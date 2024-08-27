@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.video-detail {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.video-detail__thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-detail__info {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.video-detail__info h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.video-detail__info p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.video-detail__info p:first-of-type {
+    margin-top: 0;
+}
+
+.video-detail__info p:last-of-type {
+    margin-bottom: 0;
+}
+
+.video-detail__player {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.video-detail__player video {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-detail__comments {
+    margin-top: 30px;
+}
+
+.video-detail__comments h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.comment {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+.comment strong {
+    color: #333;
+}
+
+.comment small {
+    color: #999;
+}
+
+.video-detail__comment-form {
+    margin-top: 30px;
+}
+
+.video-detail__comment-form h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.video-detail__comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.video-detail__comment-form button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.video-detail__comment-form button:hover {
+    background-color: #0056b3;
+}
