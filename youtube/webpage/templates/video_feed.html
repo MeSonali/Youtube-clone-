@@ -1,0 +1,31 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/video_feed.css' %}" />
+{% endblock %}
+{% block html %}
+<main class="feed">
+    {% for video in videos %}
+    <div class="feed__item">
+        <a href="{% url 'video_detail' video.id %}">
+            <div class="">
+                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
+            </div>
+        </a>
+        <div class="feed__item__info">
+            <div class="">
+                <img class="feed__item__info__avatar" alt="{{ video.channel.name }}" src="{{ video.channel.logo.url }}">
+            </div>
+            <div>
+                <h3>
+                    <a href="{% url 'video_detail' video.id %}">{{ video.title }}</a>
+                </h3>
+                <a href="{% url 'channel_detail' video.channel.id %}">{{ video.channel.name }}</a>
+                <p>{{ video.views }} Views · {{ video.upload_date|date:"d M Y" }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

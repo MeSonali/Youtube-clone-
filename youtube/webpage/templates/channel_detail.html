@@ -1,0 +1,26 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/channel_details.css' %}" />
+{% endblock %}
+{% block html %}
+<main class="channel-detail">
+    <div class="channel-detail__header">
+        <img src="{{ channel.logo.url }}" alt="{{ channel.name }}" class="channel-logo">
+        <h1>{{ channel.name }}</h1>
+    </div>
+    <div class="channel-detail__videos">
+        <h2>Videos:</h2>
+        {% for video in videos %}
+        <div class="video-item">
+            <a href="{% url 'video_detail' video.id %}">
+                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
+            </a>
+            <h3><a href="{% url 'video_detail' video.id %}">{{ video.title }}</a></h3>
+            <p>{{ video.views }} Views · {{ video.upload_date|date:"d M Y" }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
