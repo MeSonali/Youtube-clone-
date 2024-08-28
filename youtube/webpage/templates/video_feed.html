@@ -9,7 +9,7 @@
     {% for video in videos %}
     <div class="feed__item">
         <a href="{% url 'video_detail' video.id %}">
-            <div class="">
+            <div class="feed__item__thumbnail">
                 <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
             </div>
         </a>

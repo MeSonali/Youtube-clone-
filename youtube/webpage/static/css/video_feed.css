@@ -12,10 +12,10 @@
 }
 
 .feed__item__thumbnail {
-  width: 360px;
-  height: 202px;
-  border-radius: 2px; 
-  overflow: hidden; /* Ensures content stays within the rounded borders */
+  width: 360px; /* Set fixed width */
+  height: 202px; /* Set fixed height */
+  border-radius: 2px;
+  overflow: hidden;
   background-color: grey;
   transition: border-radius 0.3s ease;
 }
@@ -24,19 +24,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
-  display: block; /* Ensures no inline gaps */
-  border-radius: inherit; /* Inherits the border-radius from the parent */
+  display: block;
+  border-radius: inherit;
 }
 
 .feed__item:hover .feed__item__thumbnail {
-  border-radius: 0; /* Remove border radius on hover */
+  border-radius: 0;
 }
 
 .feed__item__info {
   display: flex;
   font-size: 14px;
   color: rgb(96, 96, 96);
-  margin-top: 8px; /* Add some space between thumbnail and text */
+  margin-top: 8px;
 }
 
 .feed__item__info h3 {
