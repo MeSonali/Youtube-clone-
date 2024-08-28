@@ -1,9 +1,9 @@
 .feed {
   margin-top: 140px;
-  margin-left: 240px;
+  margin-left: 272px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
-  gap: 16px; /* Add space between grid items */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px; 
 }
 
 .feed__item {
@@ -12,9 +12,9 @@
 }
 
 .feed__item__thumbnail {
-  width: 360px; /* Set fixed width */
-  height: 202px; /* Set fixed height */
-  border-radius: 2px;
+  width: 360px; 
+  height: 202px; 
+  border-radius: 6px;
   overflow: hidden;
   background-color: grey;
   transition: border-radius 0.3s ease;
@@ -23,7 +23,7 @@
 .feed__item__thumbnail img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
+  object-fit: cover; 
   display: block;
   border-radius: inherit;
 }
