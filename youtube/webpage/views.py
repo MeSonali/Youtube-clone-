@@ -6,13 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def home(request):
-    if request.method == "GET":
-        # return render(request, 'video_feed.html')
-        pass
-    if request.method == 'POST':
-        pass
-
 
 def video_feed(request):
     if request.method == "GET":
