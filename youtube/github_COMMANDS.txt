@@ -1,0 +1,15 @@
+for everytime in this project :
+
+    sabse phle to har hamesha whenever uh start working on ur pc always start up with pull requset
+    ---> git pull origin main 
+    Always ensure to be in directory of youtube project and not be in any sub directory 
+    ------> WHATAEVER YOU want to do code it 
+    -----> git add .
+    -----> git commit -m "your commit message"
+    -----> git push origin sonali
+
+
+
+    ----> COME TO YOUr github change to branch sonali and create  a pull request 
+end loop
+
