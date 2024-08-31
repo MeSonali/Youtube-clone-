@@ -1,9 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-from . models import Video,Channel
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from . models import Video,Channel
+
 
 @login_required(login_url='login')
 def HomePage(request):
@@ -74,6 +75,7 @@ def channel_detail(request, pk):
     if request.method == "POST":
         pass
 
+@login_required(login_url='login')
 def like_video(request, video_id):
     if request.method == "POST":
         video = get_object_or_404(Video, id=video_id)
@@ -84,3 +86,32 @@ def like_video(request, video_id):
         return redirect('video_detail', pk=video_id)
     else:
         return HttpResponse(status=405)  
+
+
+@login_required(login_url='login')
+def add_video(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        video_file = request.FILES.get('video_file')
+        thumbnail = request.FILES.get('thumbnail')
+        channel_id = request.POST.get('channel')
+        
+        channel = get_object_or_404(Channel, id=channel_id)
+        author = request.user  
+
+        new_video = Video.objects.create(
+             title=title,
+            description=description,
+            video_file=video_file,
+            thumbnail=thumbnail,
+            channel=channel,
+            author=author
+        )
+        new_video.save()
+        
+        return redirect('video_feed')
+    
+    channels = Channel.objects.all() 
+    context = {'channels': channels}
+    return render(request, 'add_video.html', context)
