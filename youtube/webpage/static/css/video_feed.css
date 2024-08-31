@@ -78,3 +78,17 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+@media (max-width: 1200px) {
+  .feed {
+      grid-template-columns: repeat(2, 1fr);
+      margin-left: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed {
+      grid-template-columns: 1fr;
+      margin-left: 20px;
+  }
+}

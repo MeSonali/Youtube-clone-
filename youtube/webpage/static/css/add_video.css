@@ -1,0 +1,68 @@
+/* General Styles */
+.add-video-form {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    background-color: #080710;
+    padding: 20px;
+}
+
+/* Form Container Styles */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+/* Form Header Styles */
+.form-container h1 {
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    border: none;
+    color: #ffffff;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Submit Button Styles */
+.submit-button {
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}

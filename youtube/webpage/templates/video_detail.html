@@ -15,11 +15,26 @@
         <p>{{ video.description }}</p>
         <p>Views: {{ video.views }}</p>
         <p>Uploaded on: {{ video.upload_date|date:"d M Y" }}</p>
+
+        <!-- Like Button -->
+        <p>Likes: {{ video.total_likes }}</p>
+        {% if user.is_authenticated %}
+            <form action="{% url 'like_video' video.id %}" method="post">
+                {% csrf_token %}
+                {% if user in video.likes.all %}
+                    <button type="submit" class="btn btn-danger">Unlike</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary">Like</button>
+                {% endif %}
+            </form>
+        {% else %}
+            <p><a href="{% url 'login' %}">Log in to like this video</a></p>
+        {% endif %}
     </div>
 
     <!-- Video Player -->
     <div class="video-detail__player">
-        <video controls poster="{{ video.thumbnail.url }}" muted loop >
+        <video controls poster="{{ video.thumbnail.url }}" muted loop>
             <source src="{{ video.video_file.url }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -30,7 +45,7 @@
         <h3>Comments</h3>
         {% for comment in video.comments.all %}
         <div class="comment">
-            <p><strong>{{ comment.author.name }}</strong> said:</p>
+            <p><strong>{{ comment.author.username }}</strong> said:</p>
             <p>{{ comment.content }}</p>
             <p><small>{{ comment.created_at|date:"d M Y H:i" }}</small></p>
         </div>
@@ -49,8 +64,4 @@
         </form>
     </div> {% endcomment %}
 </main>
-
-<aside>
-    
-</aside>
 {% endblock %}
