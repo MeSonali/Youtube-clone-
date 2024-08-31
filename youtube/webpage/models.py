@@ -16,12 +16,17 @@ class Video(models.Model):
     thumbnail = models.ImageField(upload_to='thumbnail/', default=None)
     views = models.IntegerField(default=0)
     upload_date = models.DateTimeField(auto_now_add=True)
-    likes = models.IntegerField(default=0, blank=True)
+    # likes = models.IntegerField(default=0, blank=True)
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE, related_name='videos')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='videos')  
+    likes = models.ManyToManyField(User, related_name='liked_videos', blank=True)
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
+    
 
     
 
