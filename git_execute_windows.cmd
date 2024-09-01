@@ -23,7 +23,7 @@ git add .
 git commit -m "%commit_message%"
 
 :: Pull latest changes from origin main
-git pull origin main
+git pull origin fareed
 
 :: Add changes to staging again (in case there were updates from pull)
 git add .
