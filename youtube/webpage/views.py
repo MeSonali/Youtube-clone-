@@ -42,7 +42,7 @@ def LoginPage(request):
         return render (request,'login.html')
 
 def LogoutPage(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         logout(request)
         return redirect('login')
 
@@ -60,8 +60,13 @@ def video_feed(request):
 
 def video_detail(request, pk):
     if request.method == "GET":
-        video = get_object_or_404(Video, id=pk)
-        context = {'video': video}
+        videos = Video.objects.all()
+        video_personal = get_object_or_404(Video, id=pk)
+        print(video_personal)
+        context = {
+            'video_personal': video_personal,
+            'videos': videos,
+                }
         return render(request, 'video_detail.html', context)
     if request.method == "POST":
         pass

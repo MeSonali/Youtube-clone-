@@ -1,67 +1,260 @@
-{% extends 'basic.html' %}
-{% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="{% static 'css/video_details.css' %}" />
-{% endblock %}
-{% block html %}
-<main class="video-detail">
-    <!-- Video Thumbnail and Information -->
-    <div class="video-detail__thumbnail">
-        <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
-    </div>
-    <div class="video-detail__info">
-        <h1>{{ video.title }}</h1>
-        <p>{{ video.description }}</p>
-        <p>Views: {{ video.views }}</p>
-        <p>Uploaded on: {{ video.upload_date|date:"d M Y" }}</p>
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/video_display.css'%}">
+    <title>Video 9| Elon musk and TATA</title>
+</head>
 
-        <!-- Like Button -->
-        <p>Likes: {{ video.total_likes }}</p>
-        {% if user.is_authenticated %}
-            <form action="{% url 'like_video' video.id %}" method="post">
-                {% csrf_token %}
-                {% if user in video.likes.all %}
-                    <button type="submit" class="btn btn-danger">Unlike</button>
-                {% else %}
-                    <button type="submit" class="btn btn-primary">Like</button>
-                {% endif %}
-            </form>
-        {% else %}
-            <p><a href="{% url 'login' %}">Log in to like this video</a></p>
-        {% endif %}
-    </div>
-
-    <!-- Video Player -->
-    <div class="video-detail__player">
-        <video controls poster="{{ video.thumbnail.url }}" muted loop>
-            <source src="{{ video.video_file.url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    {% comment %} <!-- Comments Section -->
-    <div class="video-detail__comments">
-        <h3>Comments</h3>
-        {% for comment in video.comments.all %}
-        <div class="comment">
-            <p><strong>{{ comment.author.username }}</strong> said:</p>
-            <p>{{ comment.content }}</p>
-            <p><small>{{ comment.created_at|date:"d M Y H:i" }}</small></p>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img src="./images/menu.png" class="menu-icon" alt="" srcset="">
+            <img src="./images/logo.png" class="logo" alt="" srcset="">
         </div>
-        {% empty %}
-        <p>No comments yet.</p>
-        {% endfor %}
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <input type="text" placeholder="Search..">
+                <img src="./images/search.png" alt="" srcset="">
+            </div>
+            <img src="./images/voice-search.png" class="mic-icon" alt="" srcset="">
+        </div>
+        <div class="nav-right flex-div">
+            <img src="./images/upload.png" alt="" srcset="">
+            <img src="./images/more.png" alt="" srcset="">
+            <img src="./images/notification.png" alt="" srcset="">
+            <img src="./images/nilava.jpeg" class="user-icon" alt="" srcset="">
+        </div>
+    </nav>
+
+
+    <div class="container play-container">
+        <div class="row">
+            <div class="play-video">
+                <video  controls autoplay>
+                    <source src="video_personal.video" type="video/mp4">
+                </video>
+
+                <div class="tags">
+                    <a href="">#Entreprenuers</a> <a href="">#billionaires</a> <a href="">#RatanTata</a> <a
+                        href="">#India</a>
+                </div>
+                <h3> Surprisingly a good singer</h3>
+                <div class="play-video-info">
+                    <p>18,406,599 Views &bull; May 20, 2015</p>
+                    <div>
+                        <a href="http://"><img src="./images/like.png">488K</a>
+                        <a href="http://"><img src="./images/dislike.png">5.9K</a>
+                        <a href="http://"><img src="./images/share.png">SHARE</a>
+                        <a href="http://"><img src="./images/save.png">SAVE</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="owner">
+                    <img src="./images/thumbnail1-owner.jpg">
+                    <div>
+                        <p>megan summers</p>
+                        <span>19.4K subscribers</span>
+                    </div>
+                    <button type="button">Subscribe</button>
+
+                </div>
+
+                <div class="vid-des">
+                    <p>Dude at my school turns out to have a voice.</p>
+                    <p>Subscribe to megan summers</p>
+                    <hr>
+                    <div class="cmnt">
+                        <h4>16,303 Commnets</h4>
+                        <img src="./images/menu.png" alt="" srcset="">
+                        <span>SORT BY</span>
+                    </div>
+
+                    <div class="add-cmnt">
+                        <img src="./images/nilava.jpeg" alt="" srcset="">
+                        <input type="text" placeholder="Add a Public Comment">
+                    </div>
+
+                    <div class="old-cmnt">
+                        <img src="./images/Harpreet.jpg" alt="" srcset="">
+                        <div>
+                            <h3>
+                                Atinder Kumar <span>2 Day ago</span>
+                            </h3>
+                            <p>Look at elon’s expression and body language at the mention of Ratan Tata and the self
+                                correction he does when he <br> talks about him. Ratan Tata is a gem .</p>
+
+                                <div class="cmnt-react">
+                                    <img src="./images/like.png" alt="" srcset="">
+                                    <span>1.2K</span>
+                                    <img src="./images/dislike.png" alt="" srcset="">
+                                    <span></span>
+                                    <span>REPLY</span>
+                                    <!-- <a href="http://">ALL Replies</a> -->
+                                    <div> &bull; View 9 Replies</div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="old-cmnt">
+                        <img src="./images/Harpreet.jpg" alt="" srcset="">
+                        <div>
+                            <h3>
+                                Atinder Kumar <span>2 Day ago</span>
+                            </h3>
+                            <p>Look at elon’s expression and body language at the mention of Ratan Tata and the self
+                                correction he does when he <br> talks about him. Ratan Tata is a gem .</p>
+
+                                <div class="cmnt-react">
+                                    <img src="./images/like.png" alt="" srcset="">
+                                    <span>1.2K</span>
+                                    <img src="./images/dislike.png" alt="" srcset="">
+                                    <span></span>
+                                    <span>REPLY</span>
+                                    <!-- <a href="http://">ALL Replies</a> -->
+                                    <div> &bull; View 9 Replies</div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="old-cmnt">
+                        <img src="./images/Harpreet.jpg" alt="" srcset="">
+                        <div>
+                            <h3>
+                                Atinder Kumar <span>2 Day ago</span>
+                            </h3>
+                            <p>Look at elon’s expression and body language at the mention of Ratan Tata and the self
+                                correction he does when he <br> talks about him. Ratan Tata is a gem .</p>
+
+                                <div class="cmnt-react">
+                                    <img src="./images/like.png" alt="" srcset="">
+                                    <span>1.2K</span>
+                                    <img src="./images/dislike.png" alt="" srcset="">
+                                    <span></span>
+                                    <span>REPLY</span>
+                                    <!-- <a href="http://">ALL Replies</a> -->
+                                    <div> &bull; View 9 Replies</div>
+                                </div>
+                        </div>
+                    </div>
+
+                    
+
+
+
+                </div>
+                <hr class="hide-hr">
+
+
+            </div>
+            <div class="right-sidebar">
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail19.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail10.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail11.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+                <div class="side-video-list">
+                    <a href="video-12.html" class="small-thumbnail"> <img src="./images/thumbnail12.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="video-12.html">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail13.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail14.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail15.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail16.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail17.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+                <div class="side-video-list">
+                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail18.png" alt="" srcset=""></a>
+                    <div class="vid-info">
+                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
+                        <p>Avalin Vines</p>
+                        <p>1.1M Views</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
     </div>
 
-    <!-- Comment Form -->
-    <div class="video-detail__comment-form">
-        <h3>Leave a Comment</h3>
-        <form action="{% url 'add_comment' video.id %}" method="post">
-            {% csrf_token %}
-            <textarea name="content" rows="4" placeholder="Write your comment here..." required></textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div> {% endcomment %}
-</main>
-{% endblock %}
+
+
+
+</body>
+
+</html>
