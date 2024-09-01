@@ -62,7 +62,7 @@ def video_detail(request, pk):
     if request.method == "GET":
         videos = Video.objects.all()
         video_personal = get_object_or_404(Video, id=pk)
-        print(video_personal)
+        
         context = {
             'video_personal': video_personal,
             'videos': videos,

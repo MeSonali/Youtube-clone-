@@ -12,21 +12,21 @@
 <body>
     <nav class="flex-div">
         <div class="nav-left flex-div">
-            <img src="./images/menu.png" class="menu-icon" alt="" srcset="">
-            <img src="./images/logo.png" class="logo" alt="" srcset="">
+            <img src="{%static '/images/menu.png'%}" class="menu-icon" alt="" srcset="">
+            <img src="{%static '/images/logo.png'%}" class="logo" alt="" srcset="">
         </div>
         <div class="nav-middle flex-div">
             <div class="search-box flex-div">
                 <input type="text" placeholder="Search..">
-                <img src="./images/search.png" alt="" srcset="">
+                <img src="{%static '/images/search.png'%}" alt="" srcset="">
             </div>
-            <img src="./images/voice-search.png" class="mic-icon" alt="" srcset="">
+            <img src="{%static '/images/voice-search.png'%}" class="mic-icon" alt="" srcset="">
         </div>
         <div class="nav-right flex-div">
-            <img src="./images/upload.png" alt="" srcset="">
-            <img src="./images/more.png" alt="" srcset="">
-            <img src="./images/notification.png" alt="" srcset="">
-            <img src="./images/nilava.jpeg" class="user-icon" alt="" srcset="">
+            <img src="{% static 'images/upload.png' %}" alt="" srcset="">
+            <img src="{% static 'images/more.png' %}" alt="" srcset="">
+            <img src="{% static 'images/notification.png' %}" alt="" srcset="">
+            <img src="{% static 'images/nilava.jpeg' %}" class="user-icon" alt="" srcset="">
         </div>
     </nav>
 
@@ -35,28 +35,41 @@
         <div class="row">
             <div class="play-video">
                 <video  controls autoplay>
-                    <source src="video_personal.video" type="video/mp4">
+                    <source src="{{video_personal.video_file.url}}" type="video/mp4">
                 </video>
 
                 <div class="tags">
                     <a href="">#Entreprenuers</a> <a href="">#billionaires</a> <a href="">#RatanTata</a> <a
                         href="">#India</a>
                 </div>
-                <h3> Surprisingly a good singer</h3>
+                <h3>{{video_personal.title}}</h3>
                 <div class="play-video-info">
-                    <p>18,406,599 Views &bull; May 20, 2015</p>
+                    <p>{{video_personal.views}} Views &bull;{{video_personal.upload_date|date:"d M Y"}}</p>
                     <div>
-                        <a href="http://"><img src="./images/like.png">488K</a>
-                        <a href="http://"><img src="./images/dislike.png">5.9K</a>
-                        <a href="http://"><img src="./images/share.png">SHARE</a>
-                        <a href="http://"><img src="./images/save.png">SAVE</a>
+                        <a href="http://">
+                            <img src="{% static 'images/like.png' %}" alt="Like">
+                            {{video_personal.likes}}
+                        </a>
+                        <a href="http://">
+                            <img src="{% static 'images/dislike.png' %}" alt="Dislike">
+                        
+                        </a>
+                        <a href="http://">
+                            <img src="{% static 'images/share.png' %}" alt="Share">
+                            SHARE
+                        </a>
+                        <a href="http://">
+                            <img src="{% static 'images/save.png' %}" alt="Save">
+                            SAVE
+                        </a>
                     </div>
+                    
                 </div>
                 <hr>
                 <div class="owner">
-                    <img src="./images/thumbnail1-owner.jpg">
+                    <img src="{{ video_personal.channel.logo.url }}" alt="Thumbnail">
                     <div>
-                        <p>megan summers</p>
+                        <p>{{video_personal.channel}}</p>
                         <span>19.4K subscribers</span>
                     </div>
                     <button type="button">Subscribe</button>
@@ -64,17 +77,17 @@
                 </div>
 
                 <div class="vid-des">
-                    <p>Dude at my school turns out to have a voice.</p>
-                    <p>Subscribe to megan summers</p>
+                    <p>{{video_personal.description}}</p>
+                    <p>Subscribe to {{video_personal.channel}}</p>
                     <hr>
                     <div class="cmnt">
                         <h4>16,303 Commnets</h4>
-                        <img src="./images/menu.png" alt="" srcset="">
+                        <img src="{%static '/images/menu.png'%}" alt="" srcset="">
                         <span>SORT BY</span>
                     </div>
 
                     <div class="add-cmnt">
-                        <img src="./images/nilava.jpeg" alt="" srcset="">
+                        <img src="{%static '/images/nilava.jpeg'%}" alt="" srcset="">
                         <input type="text" placeholder="Add a Public Comment">
                     </div>
 
@@ -151,103 +164,20 @@
 
             </div>
             <div class="right-sidebar">
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail19.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
+                {% for video in videos %}
+                <a href ="{% url 'video_detail' video.id %}">
+                    <div class="side-video-list">
+                        <a href="{% url 'video_detail' video.id %}" class="small-thumbnail"> 
+                            <img src="{{ video.thumbnail.url }}" alt="" srcset="">
+                        </a>
+                        <div class="vid-info">
+                            <a href="">{{video.description}}</a>    
+                            <p>{{video.channel}}</p>
+                            <p>{{video.views}}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail10.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail11.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-                <div class="side-video-list">
-                    <a href="video-12.html" class="small-thumbnail"> <img src="./images/thumbnail12.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="video-12.html">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail13.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail14.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail15.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail16.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail17.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-                <div class="side-video-list">
-                    <a href="" class="small-thumbnail"> <img src="./images/thumbnail18.png" alt="" srcset=""></a>
-                    <div class="vid-info">
-                        <a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p>Avalin Vines</p>
-                        <p>1.1M Views</p>
-                    </div>
-                </div>
-
-
-
+                <a/>
+                {%endfor%}
             </div>
         </div>
     </div>
