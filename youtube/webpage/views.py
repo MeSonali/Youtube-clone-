@@ -25,8 +25,8 @@ def SignupPage(request):
             my_user.save()
             return redirect('login')
         
-
-    return render (request,'signup.html')
+    if request.method =='GET' : 
+        return render (request,'signup.html')
 
 def LoginPage(request):
     if request.method=='POST':
@@ -38,12 +38,13 @@ def LoginPage(request):
             return redirect('home')
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
-
-    return render (request,'login.html')
+    if request.method =='GET':
+        return render (request,'login.html')
 
 def LogoutPage(request):
-    logout(request)
-    return redirect('login')
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login')
 
 
 def video_feed(request):
