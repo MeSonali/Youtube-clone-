@@ -11,4 +11,4 @@ git commit -m "notepad updated"
 git pull origin main 
 git add . 
 git commit -m "notepad updated"
-git push origin main 
+git push origin fareed
