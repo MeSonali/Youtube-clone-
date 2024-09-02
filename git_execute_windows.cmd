@@ -16,14 +16,20 @@ if "%commit_message%"=="" (
     exit /b 1
 )
 
+:: Prompt for branch name
+set /p branch_name="Enter branch name: "
+
+:: Switch to the branch or create it if it doesn't exist
+git checkout %branch_name% || git checkout -b %branch_name%
+
 :: Add changes to staging
 git add .
 
 :: Commit changes with user-provided message
 git commit -m "%commit_message%"
 
-:: Pull latest changes from origin main
-git pull origin fareed
+:: Pull latest changes from origin branch
+git pull origin %branch_name%
 
 :: Add changes to staging again (in case there were updates from pull)
 git add .
@@ -31,8 +37,7 @@ git add .
 :: Commit changes again with user-provided message
 git commit -m "%commit_message%"
 
-:: Push changes to origin branch named fareed
-git push origin fareed
+:: Push changes to origin branch
+git push origin %branch_name%
 
 endlocal
-
