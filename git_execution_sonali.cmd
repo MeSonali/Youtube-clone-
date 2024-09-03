@@ -11,4 +11,8 @@ if "%commit_message%"=="" (
 git checkout sonali
 git add .
 git commit -m "%commit_message%"
+git pull origin main 
+git add . 
+git commit -m "%commit_message%"
+git push origin sonali
 
