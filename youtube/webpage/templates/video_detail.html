@@ -46,22 +46,41 @@
                 <div class="play-video-info">
                     <p>{{video_personal.views}} Views &bull;{{video_personal.upload_date|date:"d M Y"}}</p>
                     <div>
-                        <a href="http://">
-                            <img src="{% static 'images/like.png' %}" alt="Like">
-                            {{video_personal.likes}}
-                        </a>
-                        <a href="http://">
-                            <img src="{% static 'images/dislike.png' %}" alt="Dislike">
+                            <!-- Like Form -->
+                            <form action="#" method="POST">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'images/like.png' %}" alt="Like">
+                                    {{ video_personal.likes }}
+                                </button>
+                            </form>
                         
-                        </a>
-                        <a href="http://">
-                            <img src="{% static 'images/share.png' %}" alt="Share">
-                            SHARE
-                        </a>
-                        <a href="http://">
-                            <img src="{% static 'images/save.png' %}" alt="Save">
-                            SAVE
-                        </a>
+                            <!-- Dislike Form -->
+                            <form action="#" method="POST">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'images/dislike.png' %}" alt="Dislike">
+                                </button>
+                            </form>
+                        
+                            <!-- Share Form -->
+                            <form action="#" method="POST">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'images/share.png' %}" alt="Share">
+                                    SHARE
+                                </button>
+                            </form>
+                        
+                            <!-- Save Form -->
+                            <form action="#" method="POST">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'images/save.png' %}" alt="Save">
+                                    SAVE
+                                </button>
+                            </form>
+                        
                     </div>
                     
                 </div>

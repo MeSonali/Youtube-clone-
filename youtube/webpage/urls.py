@@ -13,7 +13,6 @@ urlpatterns = [
     path('video_feed/',video_feed, name='video_feed'),
     path('video/<int:pk>/',video_detail, name='video_detail'),
     path('channel/<int:pk>/',channel_detail, name='channel_detail'),
-    path('video_detail/',video_detail, name='video_detail'),
     path('video/<int:video_id>/like/', like_video, name='like_video'),
     path('add_video/',add_video, name='add_video'),
 ]
