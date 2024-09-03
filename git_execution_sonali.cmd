@@ -7,3 +7,8 @@ if "%commit_message%"=="" (
     echo Commit message cannot be empty. Exiting.
     exit /b 1
 )
+
+git checkout sonali
+git add .
+git commit -m "%commit_message%"
+
