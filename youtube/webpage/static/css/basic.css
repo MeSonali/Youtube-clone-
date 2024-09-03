@@ -149,8 +149,16 @@ body {
     font-size: 14px;
     padding: 0 24px;
     height: 40px;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 4px;
   }
   
+  
+  .sidebar__section__link:hover{
+    color: rgb(3, 3, 3);
+    background-color: grey;
+
+  }
   .sidebar__section__link svg,
   .sidebar__section__avatar {
     height: 24px;
