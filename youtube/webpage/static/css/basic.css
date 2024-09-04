@@ -156,7 +156,8 @@ body {
   
   .sidebar__section__link:hover{
     color: rgb(3, 3, 3);
-    background-color: grey;
+    background-color: rgb(234, 223, 223);
+    text-decoration: none;
 
   }
   .sidebar__section__link svg,
@@ -164,6 +165,7 @@ body {
     height: 24px;
     width: 24px;
     margin-right: 24px;
+    fill: #000;
   }
   
   .sidebar__section__avatar {
@@ -180,6 +182,10 @@ body {
     fill: #f00
   }
   
+  .sidebar__section__link svg:hover {
+    fill: #f00 ;
+}
+
   .sidebar__section:last-child {
     padding: 16px 24px 0 24px
   }
