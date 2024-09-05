@@ -71,7 +71,7 @@ def video_detail(request, pk):
     if request.method == "POST":
         pass
 
-
+@login_required(login_url='login')
 def channel_detail(request, pk):
     if request.method == "GET":
         channel = get_object_or_404(Channel, pk=pk)
