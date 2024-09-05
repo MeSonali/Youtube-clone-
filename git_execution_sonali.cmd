@@ -8,7 +8,7 @@ if "%commit_message%"=="" (
     exit /b 1
 )
 
-git checkout sonali
+git checkout sonali || git checkout -b sonali
 git add .
 git commit -m "%commit_message%"
 git pull origin main 
