@@ -1,31 +1,30 @@
-document.getElementById('like-button').addEventListener('click', function() {
-    const likeButton = this;
+
+document.addEventListener('DOMContentLoaded', function() {
+    const likeButton = document.getElementById('like-button');
     const likeIcon = document.getElementById('like-icon');
     const likeCount = document.getElementById('like-count');
 
-    // Toggle the like status
-    let isLiked = likeButton.getAttribute('data-liked') === 'true';
-    
-    // Perform the animation
-    likeIcon.classList.add('animate-like');
+    likeButton.addEventListener('click', function() {
+        const isLiked = likeButton.getAttribute('data-liked') === 'true';
 
-    // Send the like/unlike request via AJAX
-    fetch(likeButton.form.action, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': '{{ csrf_token }}',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ liked: !isLiked })
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Update the like count and toggle the liked status
-        likeCount.textContent = data.likes;
-        likeButton.setAttribute('data-liked', data.is_liked ? 'true' : 'false');
+        if (!isLiked) {
+            // Add like animation
+            likeIcon.classList.add('animate-like');
+            setTimeout(() => likeIcon.classList.remove('animate-like'), 300);
 
-        // Reset animation after it's done
-        setTimeout(() => likeIcon.classList.remove('animate-like'), 500);
-    })
-    .catch(error => console.error('Error:', error));
+            // Increment the like count
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            likeButton.setAttribute('data-liked', 'true');
+
+            // Change the like button color
+            likeButton.style.color = "linear-gradient(45deg, orange, blue, purple, red)";
+
+        } else {
+            // Remove like and revert back
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+            likeButton.setAttribute('data-liked', 'false');
+            likeButton.style.color = "#606060";
+        }
+    });
 });
+

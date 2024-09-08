@@ -325,15 +325,16 @@ margin-right: 20px;
 }
 
 .action-button {
+    display: flex;
+    align-items: center;
     background-color: transparent;
     border: none;
-    outline: none;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    transition: transform 0.3s ease, background-color 0.5s ease;
-    border-radius: 50%;
-    padding: 10px;
+    font-size: 14px;
+    color: #606060;
+    padding: 0;
+    margin: 0;
+    position: relative;
 }
 
 .action-button img {
@@ -351,53 +352,6 @@ margin-right: 20px;
 .action-button:hover {
     color: #000; /* Darker color on hover */
 }
-
-#like-icon {
-    /* width: 20px;
-    height: 20px; */
-    margin-right: 5px;
-    transition: transform 0.3s ease, color 0.3s ease; /* Animation for scaling */
-}
-
-
-#like-button[data-liked="true"] {
-    color: #FF0000; /* Color change when liked */
-}
-
-#like-icon.animate-like {
-    animation: likeAnimation 0.5s forwards; /* Apply the animation */
-}
-
-/* Apply animation to the like icon */
-#like-icon.animate-like {
-    animation: likeAnimation 0.5s forwards; /* Scaling animation */
-    background: linear-gradient(45deg, orange, blue, purple, red); /* Gradient effect */
-    -webkit-background-clip: text; /* Clip gradient to text */
-    color: transparent; /* Text is transparent to show gradient */
-    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transitions */
-}
-
-
-/* Animation Keyframes */
-@keyframes likeAnimation {
-    0% {
-        transform: scale(1);
-        filter: none;
-    }
-    50% {
-        transform: scale(1.5);
-        filter: hue-rotate(90deg);
-    }
-    100% {
-        transform: scale(1);
-        filter: none;
-    }
-}
-.animate-like {
-    transform: scale(1.5); 
-    color: linear-gradient(45deg, orange, blue, purple, red); 
-} 
-
 
 .play-video .play-video-info a img{
     width: 20px;
