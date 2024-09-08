@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const likeButton = document.getElementById('like-button');
     const likeIcon = document.getElementById('like-icon');
@@ -10,21 +9,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isLiked) {
             // Add like animation
             likeIcon.classList.add('animate-like');
-            setTimeout(() => likeIcon.classList.remove('animate-like'), 300);
+            likeButton.classList.add('animate-like');
+            setTimeout(() => {
+                likeIcon.classList.remove('animate-like');
+                likeButton.classList.remove('animate-like');
+            }, 300);
 
             // Increment the like count
             likeCount.textContent = parseInt(likeCount.textContent) + 1;
             likeButton.setAttribute('data-liked', 'true');
 
-            // Change the like button color
-            likeButton.style.color = "linear-gradient(45deg, orange, blue, purple, red)";
-
         } else {
             // Remove like and revert back
             likeCount.textContent = parseInt(likeCount.textContent) - 1;
             likeButton.setAttribute('data-liked', 'false');
-            likeButton.style.color = "#606060";
+            likeButton.style.background = "#606060"; // Reset to default color
         }
     });
 });
-

@@ -260,8 +260,6 @@ margin-right: 20px;
 }
 .play-video{
     flex-basis: 69%;
-
-
 }
 
 .right-sidebar{
@@ -324,6 +322,28 @@ margin-right: 20px;
     align-items: center;
 }
 
+.animate-like {
+    animation: likeAnimation 0.3s;
+}
+
+@keyframes likeAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+
+/* Change image source and opacity on click */
+#like-button[data-liked="true"] #like-icon {
+    content: "\2605"; /* Change image to filled purple icon */
+    opacity: 0.5; /* Full opacity */
+}
+
+#like-button[data-liked="false"] {
+    background: rgba(255, 255, 255, 0.5); /* Initial background with reduced opacity */
+    border: none; /* Remove border if needed */
+}
+
 .action-button {
     display: flex;
     align-items: center;
@@ -335,6 +355,7 @@ margin-right: 20px;
     padding: 0;
     margin: 0;
     position: relative;
+    transition: color 0.3s;
 }
 
 .action-button img {
@@ -351,6 +372,36 @@ margin-right: 20px;
 
 .action-button:hover {
     color: #000; /* Darker color on hover */
+}
+
+
+/* Add animation and color change for the like button */
+#like-button {
+    position: relative;
+}
+
+#like-button.animate-like {
+    color: transparent; /* Hide the default text color during animation */
+}
+
+#like-button.animate-like::before {
+    content: '★'; /* Or use an icon for stars */
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-size: 24px;
+    animation: starAnimation 1s forwards; /* Animation for stars */
+}
+
+@keyframes starAnimation {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* Ensure the color transition for the button */
+#like-button[data-liked="true"] {
+    color: linear-gradient(orange, blue, purple, red);
 }
 
 .play-video .play-video-info a img{
