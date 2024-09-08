@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static 'css/video_display.css'%}">
-     <script src="{% static 'js/video_details.js' %}" defer></script>
+     <script src="{% static 'js/video_detail.js' %}" defer></script>
     <title>{{ video_personal.title }}</title>
 </head>
 
@@ -46,44 +46,36 @@
                 <h3>{{video_personal.title}}</h3>
                 <div class="play-video-info">
                     <p>{{video_personal.views}} Views &bull;{{video_personal.upload_date|date:"d M Y"}}</p>
-                    <div>
-                            <!-- Like Form -->
-                            <form action="#" method="POST">
-                                {% csrf_token %}
-                                <button type="submit">
-                                    <img src="{% static 'images/like.png' %}" alt="Like">
-                                    {{ video_personal.likes }}
-                                </button>
-                            </form>
-                        
-                            <!-- Dislike Form -->
-                            <form action="#" method="POST">
-                                {% csrf_token %}
-                                <button type="submit">
-                                    <img src="{% static 'images/dislike.png' %}" alt="Dislike">
-                                </button>
-                            </form>
-                        
-                            <!-- Share Form -->
-                            <form action="#" method="POST">
-                                {% csrf_token %}
-                                <button type="submit">
-                                    <img src="{% static 'images/share.png' %}" alt="Share">
-                                    SHARE
-                                </button>
-                            </form>
-                        
-                            <!-- Save Form -->
-                            <form action="#" method="POST">
-                                {% csrf_token %}
-                                <button type="submit">
-                                    <img src="{% static 'images/save.png' %}" alt="Save">
-                                    SAVE
-                                </button>
-                            </form>
-                        
+                    <div class="button-group">
+                        <!-- Like Form -->
+                        <form action="{% url 'like_video' video_personal.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="button" id="like-button" class="action-button" data-liked="false">
+                                <img src="{% static 'images/like.png' %}" alt="Like" id="like-icon">
+                                <span id="like-count">{{ video_personal.likes }}</span>
+                            </button>
+                        </form>
+                    
+                        <!-- Dislike Form -->
+                        <button type="button" class="action-button" id="dislike-button">
+                            <img src="{% static 'images/dislike.png' %}" alt="Dislike">
+                        </button>
+                    
+                        <!-- Share Form -->
+                        <button type="button" class="action-button">
+                            <img src="{% static 'images/share.png' %}" alt="Share">
+                            <span>SHARE</span>
+                        </button>
+                    
+                        <!-- Save Form -->
+                        <button type="button" class="action-button">
+                            <img src="{% static 'images/save.png' %}" alt="Save">
+                            <span>SAVE</span>
+                        </button>
                     </div>
                     
+                    
+                
                 </div>
                 <hr>
                 <div class="owner">
@@ -196,7 +188,7 @@
                             <p>{{video.views}}</p>
                         </div>
                     </div>
-                <a/>
+                </a>
                 {%endfor%}
             </div>
         </div>

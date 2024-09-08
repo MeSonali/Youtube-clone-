@@ -19,6 +19,7 @@ class Video(models.Model):
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE, related_name='videos')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='videos')  
     likes = models.IntegerField(default=0)
+    liked_by = models.ManyToManyField(User, related_name='liked_videos', blank=True)
     comments = models.IntegerField(default= 0)
 
     def __str__(self):
