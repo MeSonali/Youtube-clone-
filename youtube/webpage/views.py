@@ -1,9 +1,10 @@
-from django.shortcuts import render,get_object_or_404,redirect
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from . models import Video,Channel
+from .models import Video, Channel, Comment
+
 
 
 @login_required(login_url='login')
@@ -126,3 +127,33 @@ def add_video(request):
     channels = Channel.objects.all() 
     context = {'channels': channels}
     return render(request, 'add_video.html', context)
+
+
+@login_required
+def add_comment(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    if request.method == 'POST':
+        content = request.POST.get('content').strip()  # Prevent empty or whitespace-only comments
+        if not content:
+            return HttpResponse("Comment cannot be empty!", status=400)
+        
+        parent_id = request.POST.get('parent_id')
+        parent_comment = Comment.objects.filter(id=parent_id).first() if parent_id else None
+        Comment.objects.create(user=request.user, video=video, content=content, parent_comment=parent_comment)
+        
+        return redirect('video_detail', pk=video.id)
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.method == 'POST':
+        if request.user in comment.liked_by.all():
+            comment.liked_by.remove(request.user)
+            comment.likes -= 1
+        else:
+            comment.liked_by.add(request.user)
+            comment.likes += 1
+        comment.save()
+        return JsonResponse({'likes': comment.likes})
+
+    return HttpResponse(status=405)

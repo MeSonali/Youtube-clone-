@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isLiked) {
             // Add like animation
             likeIcon.classList.add('animate-like');
-            likeButton.classList.add('animate-like');
+            // likeButton.classList.add('animate-like');
             setTimeout(() => {
                 likeIcon.classList.remove('animate-like');
-                likeButton.classList.remove('animate-like');
+                // likeButton.classList.remove('animate-like');
             }, 300);
 
             // Increment the like count
@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove like and revert back
             likeCount.textContent = parseInt(likeCount.textContent) - 1;
             likeButton.setAttribute('data-liked', 'false');
-            likeButton.style.background = "#606060"; // Reset to default color
+            likeButton.style.background = "#606060"; 
         }
     });
 });
+
+

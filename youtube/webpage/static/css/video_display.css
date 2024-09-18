@@ -396,7 +396,7 @@ margin-right: 20px;
 @keyframes starAnimation {
     0% { opacity: 0; transform: scale(0.5); }
     50% { opacity: 1; transform: scale(1.5); }
-    100% { opacity: 0; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
 }
 
 /* Ensure the color transition for the button */

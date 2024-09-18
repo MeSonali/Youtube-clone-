@@ -1,0 +1,130 @@
+/* Main comment section styling */
+#comments {
+    margin-top: 20px;
+    border-top: 1px solid #eaeaea;
+    padding-top: 20px;
+}
+
+#comments h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Single comment container */
+.comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* User details and comment content */
+.comment p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.comment strong {
+    font-weight: bold;
+    font-size: 15px;
+    color: #0073e6; /* Blue color for the username */
+}
+
+/* Like and reply buttons */
+button.reply-button, 
+button.like-button {
+    background-color: transparent;
+    border: none;
+    color: #0073e6;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 15px;
+    padding: 5px;
+}
+
+button.reply-button:hover, 
+button.like-button:hover {
+    text-decoration: underline;
+}
+
+/* Reply form styling */
+.reply-form {
+    margin-top: 10px;
+}
+
+.reply-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.reply-form button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.reply-form button:hover {
+    background-color: #005bb5;
+}
+
+/* Replies styling */
+.replies {
+    margin-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #eaeaea;
+    padding-left: 15px;
+}
+
+.reply {
+    margin-bottom: 10px;
+}
+
+.reply p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Form to add a new comment */
+form {
+    margin-top: 30px;
+}
+
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+form button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+form button:hover {
+    background-color: #005bb5;
+}
+
+/* Styling the like button count */
+button.like-button span {
+    font-weight: bold;
+    margin-left: 5px;
+    color: #333;
+}
