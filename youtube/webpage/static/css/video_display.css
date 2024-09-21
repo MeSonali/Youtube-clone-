@@ -18,8 +18,10 @@ img{
      align-items: center;
 
 }
+
 nav{
     padding: 0px 2%;
+    display: flex; /* */
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background: #fff;
@@ -60,7 +62,7 @@ border-radius: 50%;
     border: 1px solid #ccc;
     margin-right: 15px;
     padding: 8px 12px;
-    /* border-radius: 25px; */
+    border-radius: 25px;
 }
 
 .nav-middle .search-box input{
@@ -266,6 +268,7 @@ margin-right: 20px;
 
 .play-video video{
     width: 100%;
+    border-radius: 10px;
 }
 .side-video-list{
 
@@ -276,16 +279,17 @@ margin-right: 20px;
 
 .side-video-list img{
     width: 100%;
-
+    height: 100%;
+    border-radius: 10px;
 }
 .side-video-list .small-thumbnail{
     flex-basis: 49%;
-
+   
 }
 
 .side-video-list .vid-info{
-
     flex-basis: 49%;
+   margin:  0 0 4px 0;
 }
 
 .play-video .tags a{
@@ -308,19 +312,107 @@ margin-right: 20px;
     margin-top: 5px;
     font-size: 14px;
     color: #5a5a5a;
+    line-height: 36px;
+    /* background-color: aqua; */
+}
+
+.button-group {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    align-items: center;
+}
+
+.animate-like {
+    animation: likeAnimation 0.3s;
+}
+
+@keyframes likeAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+
+/* Change image source and opacity on click */
+#like-button[data-liked="true"] #like-icon {
+    content: "\2605"; /* Change image to filled purple icon */
+    opacity: 0.5; /* Full opacity */
+}
+
+#like-button[data-liked="false"] {
+    background: rgba(255, 255, 255, 0.5); /* Initial background with reduced opacity */
+    border: none; /* Remove border if needed */
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #606060;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.action-button img {
+    width: 40px; /* Icon size */
+    background-color: hsla(0, 0%, 100%, 0.201);
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.action-button span {
+    margin-left: 5px;
+}
+
+.action-button:hover {
+    color: #000; /* Darker color on hover */
+}
+
+
+/* Add animation and color change for the like button */
+#like-button {
+    position: relative;
+}
+
+#like-button.animate-like {
+    color: transparent; /* Hide the default text color during animation */
+}
+
+#like-button.animate-like::before {
+    content: '★'; /* Or use an icon for stars */
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-size: 24px;
+    animation: starAnimation 1s forwards; /* Animation for stars */
+}
+
+@keyframes starAnimation {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Ensure the color transition for the button */
+#like-button[data-liked="true"] {
+    color: linear-gradient(orange, blue, purple, red);
 }
 
 .play-video .play-video-info a img{
     width: 20px;
     margin-right: 8px;
-
 }
 
 .play-video .play-video-info a{
     display: inline-flex;
     align-items: center;
     margin-left: 15px;
-
 }
 
 .play-video hr{
@@ -334,6 +426,7 @@ margin-right: 20px;
     display: flex;
     align-items: center;
     margin-top: 20px;
+   
 }
 
 .owner div{

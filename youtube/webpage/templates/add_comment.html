@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ video.title }}</h2>
+<p>{{ video.description }}</p>
+
+<div id="comments">
+    <h3>Comments:</h3>
+    {% if comments %}
+        {% for comment in comments %}
+            <div class="comment">
+                <p><strong>{{ comment.user.username }}</strong> at {{ comment.created_at }}</p>
+                <p>{{ comment.content }}</p>
+                <button class="reply-button" onclick="toggleReplyForm({{ comment.id }})">Reply</button>
+                <button class="like-button" onclick="likeComment({{ comment.id }})">Like ({{ comment.likes }})</button>
+
+                <!-- Form to reply to a comment -->
+                <form action="{% url 'add_comment' video.id %}" method="post" id="reply-form-{{ comment.id }}" class="reply-form" style="display: none;" onsubmit="return validateReplyForm({{ comment.id }})">
+                    {% csrf_token %}
+                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                    <textarea name="content" rows="2" required></textarea>
+                    <button type="submit">Submit Reply</button>
+                    <p class="error-message" style="color: red; display: none;" id="reply-error-{{ comment.id }}">Reply cannot be empty!</p>
+                </form>
+
+                {% if comment.replies.all %}
+                    <div class="replies">
+                        {% for reply in comment.replies.all %}
+                            <div class="reply">
+                                <p><strong>{{ reply.user.username }}</strong> at {{ reply.created_at }}</p>
+                                <p>{{ reply.content }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No comments yet. Be the first to comment!</p>
+    {% endif %}
+</div>
+
+<!-- Form to add a new comment -->
+<form action="{% url 'add_comment' video.id %}" method="post" onsubmit="return validateCommentForm()">
+    {% csrf_token %}
+    <textarea name="content" rows="3" required></textarea>
+    <button type="submit">Add Comment</button>
+    <p class="error-message" style="color: red; display: none;" id="comment-error">Comment cannot be empty!</p>
+</form>
+
+<script>
+function toggleReplyForm(commentId) {
+    const form = document.getElementById('reply-form-' + commentId);
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to validate the main comment form
+function validateCommentForm() {
+    const content = document.querySelector('textarea[name="content"]').value.trim();
+    const errorElement = document.getElementById('comment-error');
+    
+    if (content === "") {
+        errorElement.style.display = 'block';
+        return false;  // Prevent form submission
+    } else {
+        errorElement.style.display = 'none';
+        return true;  // Allow form submission
+    }
+}
+
+// Function to validate reply forms
+function validateReplyForm(commentId) {
+    const content = document.querySelector(`#reply-form-${commentId} textarea[name="content"]`).value.trim();
+    const errorElement = document.getElementById(`reply-error-${commentId}`);
+    
+    if (content === "") {
+        errorElement.style.display = 'block';
+        return false;  // Prevent form submission
+    } else {
+        errorElement.style.display = 'none';
+        return true;  // Allow form submission
+    }
+}
+
+function likeComment(commentId) {
+    const csrfToken = "{{ csrf_token }}"; // Capture the CSRF token
+
+    fetch("{% url 'like_comment' %}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken // Send CSRF token with the request
+        },
+        body: JSON.stringify({ comment_id: commentId }) // Send the comment id as data
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const likeButton = document.querySelector(`.like-button[onclick="likeComment(${commentId})"]`);
+            likeButton.innerHTML = `Like (${data.likes})`;
+        } else {
+            alert("An error occurred while liking the comment.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
+</script>
+{% endblock %}
+
+   
